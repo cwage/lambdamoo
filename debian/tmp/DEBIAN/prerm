@@ -1,0 +1,6 @@
+#!/bin/sh -e
+
+if [ -e /var/run/lambdamoo.pid ]; then
+	/etc/init.d/lambdamoo stop
+fi
+

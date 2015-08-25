@@ -1,0 +1,26 @@
+#!/bin/sh
+#
+# Rotate the lambdamoo logfile weekly.
+
+[ -f /var/log/lambdamoo ] || exit 0
+
+umask 022
+
+# Read config file.
+. /etc/default/lambdamoo
+
+# Sanity check on config file.
+if [ "$PORT" = "" ] || [ "$LOGFILE" = "" ] || [ "$TIMEOUT" = "" ]; then
+	echo "LambdaMoo: bad /etc/default/lambdamoo!" ;
+	exit
+fi
+
+# Take care of the logfile.
+cd `dirname $LOGFILE`
+savelog -u daemon -g daemon -c 7 `basename $LOGFILE` > /dev/null
+
+# restart the LambdaMoo server.
+if [ "`pidof /usr/sbin/lambdamoo`" != "" ]; then 
+       /etc/init.d/lambdamoo stop > /dev/null
+       /etc/init.d/lambdamoo start > /dev/null
+fi

@@ -1,0 +1,28 @@
+Source: lambdamoo
+Section: net
+Priority: optional
+Maintainer: Jonathan Walther <krooger@debian.org>
+Standards-Version: 3.1.1.1
+
+Package: lambdamoo
+Architecture: any
+Depends: ${shlibs:Depends}
+Provides: lambdamoo-server
+Recommends: lambdamoo-core
+Suggests: tf, lambdamoo-docs
+Replaces: lambdamoo
+Description: a server for an online multiuser virtual world
+ Lambdamoo is a server for a virtual world, a computer program which users
+ can log into and explore. Each user takes control of a computerized
+ persona/avatar/incarnation/character. You can walk around, chat with other
+ people, solve puzzles, and even create your very own rooms, descriptions
+ and items.
+ .
+ Advanced users can program Lambdamoo, via its built in object-oriented
+ programming language.
+ .
+ Lambdamoo only provides the bare framework for your virtual world. A
+ lambdamoo guru could theoretically start with lambdamoo and the included
+ minimal core database and work their way up to a full-fledged system. The
+ rest of us will want to install the lambdacore or jhcore packages which
+ add objects and functionality to lambdamoo.

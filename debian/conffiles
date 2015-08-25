@@ -1,0 +1,3 @@
+/etc/default/lambdamoo
+/etc/init.d/lambdamoo
+/etc/cron.weekly/lambdamoo

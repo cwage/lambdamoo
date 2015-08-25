@@ -1,0 +1,40 @@
+#!/bin/sh -e
+
+# Clean up after old versions of this package.
+if [ "$1" != "abort-upgrade" -a "$1" != "abort-remove" -a "$1" \
+	!= "abort-deconfigure" ]; then
+	if ls -1 /var/lib/lambdamoo/ | grep -q "^minimal" ; then
+		echo "I see that you have some /var/lib/lambdamoo/minimal.db* files."
+		echo "These are probably relics of an old version of lambdamoo,"
+		echo "and should be deleted. They may be a lambdamoo database"
+		echo "that you have worked on, in which case, you don't want to"
+		echo "delete them."
+		echo ""
+		echo -n "Delete /var/lib/lambdamoo/minimal.db* [yN]?"
+		read yn
+		echo ""
+		test -n "$yn" || yn="N"
+		case "$yn" in
+			[Yy]*)
+				echo "Deleting /var/lib/lambdamoo/minimal.db* .."
+				rm -f /var/lib/lambdamoo/minimal.db*
+			;;
+			*)
+				echo "Leaving the files alone."
+			;;
+		esac
+	fi
+fi
+
+addgroup --system lambdamoo
+adduser --system lambdamoo --ingroup lambdamoo --home /var/lib/lambdamoo
+touch /var/log/lambdamoo
+chown -f lambdamoo.lambdamoo /var/log/lambdamoo || true
+chown -f lambdamoo.lambdamoo /var/lib/lambdamoo || true
+chown -f lambdamoo.lambdamoo /var/lib/lambdamoo/* || true
+# Old versions allowed anyone to access the db files. Fix that.
+chmod 700 /var/lib/lambdamoo || true
+
+update-rc.d lambdamoo defaults >/dev/null
+/etc/init.d/lambdamoo start
+

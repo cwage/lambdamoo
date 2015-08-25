@@ -1,0 +1,8 @@
+#!/bin/sh -e
+
+# If we are purging, remove all logfiles.
+if [ "$1" = "purge" ] ; then
+        rm -f /var/log/lambdamoo*
+	update-rc.d lambdamoo remove >/dev/null
+fi
+#DEBHELPER#

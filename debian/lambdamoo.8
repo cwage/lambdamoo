@@ -1,0 +1,35 @@
+.TH LAMBDAMOO 8 
+.SH NAME
+lambdamoo \- server for an online multiuser virtual world
+.SH SYNOPSIS
+.B lambdamoo
+.I "[-e] [-l log-file] input-db-file output-db-file [port]"
+.SH "DESCRIPTION"
+Lambdamoo is a server for a online multiuser virtual world, or MOO.
+The server reads in a lambdamoo database, accepts user connections, and when
+shut down, dumps the database to an output file.
+.P
+Lambdamoo contains a built in programming language, but documenting that is
+beyond the scope of this man page. See the lambdamoo programmers manual and
+the lambdamoo user's manual for more information.
+.SH OPTIONS
+.TP
+.B \-e
+Start lambdamoo in emergency single-user mode. In this mode, you are
+automatically logged into the server as wizard, and noone else can
+connect.
+.TP
+.B \-l log-file
+Output logs to the specified log file, instead of to standard output.
+.TP
+.B input-db-file
+Lambdamoo database to load on startup.
+.TP
+.B output-db-file
+Lambdamoo database to checkpoint to and save to when the moo is shut down.
+.TP
+.B port
+Port to listen on for user connections. Default is 7777.
+.SH AUTHOR
+This manual page was written by Joey Hess <joeyh@master.debian.org>,
+for the Debian GNU/Linux system.

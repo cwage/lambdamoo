@@ -1,0 +1,5 @@
+/etc/init.d/lambdamoo looks at the file /etc/moos.conf to 
+determine which moos to run or stop or whatever.  Read through 
+/etc/moos.conf to see how to get a running moo up.
+
+ -- Jonathan Walther <krooger@debian.org>
